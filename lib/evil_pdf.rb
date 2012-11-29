@@ -3,8 +3,8 @@ class EvilPdf
   require 'pdfkit'
   attr_reader :file_handle
   
-  def initialize(record, options = {})
-    @record = record
+  def initialize(name, options = {})
+    @record = PdfRecord.create :name => name
     @options = options
     Dir.mkdir './tmp' unless Dir.exists? './tmp'
     self.class.handle_asynchronously :from_urls if options[:async]
