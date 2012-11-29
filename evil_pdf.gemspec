@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.email = %q{diego@pixelheadstudio.com}
   s.extra_rdoc_files = ["README.rdoc"]
   s.summary = %q{Generate a PDF from an array of URLs}
-  s.homepage = %q{https://github.com/DiegoSalazar/EvilPDF/}
+  s.homepage = %q{https://github.com/DiegoSalazar/EvilPDF-Gem/}
   s.description = %q{Generate a PDF from an array of URLs}
   s.files = ["lib/evil_pdf.rb"]
 end
