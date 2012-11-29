@@ -55,7 +55,7 @@ class EvilPdf
   def combine
     gs_opts = "-q -dNOPAUSE -sDEVICE=pdfwrite"
     gs_cmd = "gs #{gs_opts} -sOutputFile=#{file_path} -dBATCH #{@tmp_files.join(' ')}"
-    Rails.logger.debug "Combining PDFs: #{gs_cmd}"
+    Rails.logger.debug "Combining PDFs: #{gs_cmd}" if defined? Rails
     system gs_cmd
   end
 end
