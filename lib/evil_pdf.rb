@@ -1,27 +1,28 @@
 class EvilPdf
   require 'open-uri'
-  require 'pdfkit'
   attr_reader :file_handle
   
   def initialize(name, options = {})
     @record = PdfRecord.create :name => name
     @options = options
     Dir.mkdir './tmp' unless Dir.exists? './tmp'
-    self.class.handle_asynchronously :from_urls if options[:async]
   end
   
   def from_urls(urls)
+    if @options[:async]
+      delay.from_urls_without_delay
+    else
+      from_urls_without_delay
+    end
+  end
+  
+  def from_urls_without_delay
     @tmp_files = []
     urls.each_with_index do |url, i|
       retrieve(url) and generate(i)
     end
     combine
-    
-    if @options[:async]
-      @record.update_attributes :pdf => file_handle
-    else
-      file_handle
-    end
+    @record.update_attributes :pdf => file_handle
   end
   
   def to_file(name)
@@ -57,5 +58,11 @@ class EvilPdf
     gs_cmd = "gs #{gs_opts} -sOutputFile=#{file_path} -dBATCH #{@tmp_files.join(' ')}"
     Rails.logger.debug "Combining PDFs: #{gs_cmd}" if defined? Rails
     system gs_cmd
+  end
+  
+  def self.enable_delayed
+    class_eval do
+      handle_asynchronously :from_urls
+    end
   end
 end

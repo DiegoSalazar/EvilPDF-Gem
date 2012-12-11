@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name = %q{evil_pdf}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
   s.has_rdoc = true
-  s.required_ruby_version = ">= 1.9.2"
+  s.required_ruby_version = "~> 1.9.2"
   s.platform = "ruby"
   s.require_paths = ["lib"]
   s.required_rubygems_version = ">= 0"
