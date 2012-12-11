@@ -25,6 +25,6 @@ Generate a PDF file from an array of URLs
 == Dependencies
 
 - PDFKit[https://github.com/pdfkit/pdfkit] wrapper
-- wkhtmltopdf[http://github.com/antialize/wkhtmltopdf] binary
-- Ghostscript[http://www.ghostscript.com/] to combine PDFs into one file.
+- wkhtmltopdf[http://github.com/antialize/wkhtmltopdf] binary (included in PDFKit)
+- Ghostscript[http://www.ghostscript.com/] to combine PDFs into one file (included in most *nix systems)
 - delayed_job
